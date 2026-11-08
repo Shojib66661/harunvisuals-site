@@ -68,3 +68,20 @@
       .finally(function () { btn.disabled = false; btn.textContent = 'Send my message'; });
   });
 })();
+
+(function () {
+  // Click-to-play YouTube: show the thumbnail first, load the player only after a tap.
+  document.querySelectorAll('.yt-lite').forEach(function (box) {
+    var img = box.querySelector('img');
+    if (img && /maxresdefault/.test(img.src)) img.onerror = function () { img.onerror = null; img.src = img.src.replace('maxresdefault', 'hqdefault'); };
+    box.querySelector('.yt-play').addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.id + '?autoplay=1&rel=0&modestbranding=1';
+      f.title = box.dataset.title || 'YouTube video';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      box.appendChild(f);
+      box.classList.add('on');
+    });
+  });
+})();

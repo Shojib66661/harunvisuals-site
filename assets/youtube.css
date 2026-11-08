@@ -1,0 +1,95 @@
+/* YouTube-first top of the page (added Nov 2026). Uses the tokens from style.css. */
+:root { --yt: #e62e2e; --yt-dark: #b81f1f; }
+
+/* contact strip above the nav */
+.topbar { background: var(--ink); color: #fff; font-size: .86rem; font-weight: 700; }
+.topbar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; padding-block: 8px; }
+.tb { display: inline-flex; align-items: center; gap: 7px; color: #e8e9f1; text-decoration: none; white-space: nowrap; }
+.tb:hover { color: #fff; }
+.tb svg { width: 16px; height: 16px; fill: currentColor; flex: none; }
+.tb-yt svg { fill: #ff5a4f; }
+.tb-soon { color: #9a9db3; }
+.tb-soon i { font-style: normal; font-size: .72rem; background: #3a3d55; padding: 1px 7px; border-radius: 99px; margin-left: 2px; }
+.tb-mail { margin-left: auto; }
+@media (max-width: 640px) { .tb-mail { margin-left: 0; } .topbar .wrap { gap: 4px 16px; } }
+
+/* red YouTube button */
+.btn svg { width: 22px; height: 22px; fill: currentColor; margin-left: -4px; }
+.btn-yt, .nav-links a.btn-yt { background: var(--yt); color: #fff; box-shadow: 0 4px 0 var(--yt-dark); }
+.btn-yt:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--yt-dark); }
+
+/* hero: on phones the film sits right under the heading */
+.yt-hero { padding-block: 44px 72px; overflow: hidden; }
+.yt-hero .wrap { display: grid; grid-template-columns: .9fr 1.1fr; grid-template-areas: "top film" "rest film"; gap: 22px 48px; align-items: center; }
+.yh-top { grid-area: top; display: grid; gap: 10px; align-self: end; }
+.yh-film { grid-area: film; margin: 0; min-width: 0; display: grid; gap: 14px; justify-items: end; }
+.yh-film .hand { margin-right: 12px; }
+.yh-rest { grid-area: rest; display: grid; gap: 22px; align-self: start; }
+.yh-handle { color: var(--ink-soft); font-weight: 700; }
+.yh-handle b { color: var(--ink); }
+@media (max-width: 860px) {
+  .yt-hero .wrap { grid-template-columns: 1fr; grid-template-areas: "top" "film" "rest"; }
+  .yh-film { justify-items: center; }
+}
+@media (max-width: 560px) { .yt-hero { padding-block: 28px 56px; } }
+
+/* click-to-play YouTube player (loads YouTube only after a tap, so the page stays fast) */
+.yt-lite { position: relative; aspect-ratio: 16/9; background: #222; border-radius: 2px; overflow: hidden; }
+.yt-lite img { width: 100%; height: 100%; object-fit: cover; }
+.yt-lite iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt-play { position: absolute; inset: 0; border: 0; padding: 0; cursor: pointer; background: transparent; display: grid; place-items: center; }
+.yt-play::before { content: ""; width: 76px; height: 54px; border-radius: 16px; background: var(--yt); box-shadow: 0 8px 24px -6px rgba(0,0,0,.5); transition: transform .15s ease; }
+.yt-play::after { content: ""; position: absolute; border-left: 22px solid #fff; border-top: 13px solid transparent; border-bottom: 13px solid transparent; margin-left: 5px; }
+.yt-play:hover::before { transform: scale(1.08); }
+.yt-badge { position: absolute; left: 12px; top: 12px; background: var(--sun); color: var(--ink); font-weight: 800; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; }
+.yt-lite.on .yt-play, .yt-lite.on .yt-badge { display: none; }
+.yh-film .frame { transform: rotate(1.2deg); }
+
+/* full films grid */
+.yt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.yt-card { margin: 0; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.yt-card .yt-lite { box-shadow: var(--shadow); border: 8px solid var(--page); border-radius: 6px; }
+.yt-card .yt-play::before { width: 60px; height: 42px; border-radius: 12px; }
+.yt-card .yt-play::after { border-left-width: 17px; border-top-width: 10px; border-bottom-width: 10px; }
+.yt-card figcaption { display: grid; gap: 4px; }
+.yt-card h3 { font-size: 1.15rem; }
+.yt-card figcaption a { font-weight: 700; font-size: .92rem; color: var(--yt-dark); text-decoration: none; }
+@media (max-width: 960px) { .yt-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .yt-grid { grid-template-columns: 1fr; } }
+.yt-more { background: var(--page); }
+.yt-icon { flex: none; width: 46px; height: 46px; border-radius: 14px; background: var(--yt); position: relative; }
+.yt-icon::after { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-35%, -50%); border-left: 15px solid #fff; border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
+
+/* vertical Shorts */
+.shorts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.short { position: relative; aspect-ratio: 9/16; border-radius: 16px; overflow: hidden; background: #222; box-shadow: var(--shadow); text-decoration: none; color: #fff; display: block; transition: transform .15s ease; }
+.short:hover { transform: translateY(-3px); }
+.short img { width: 100%; height: 100%; object-fit: cover; }
+.short span { position: absolute; inset: auto 0 0 0; padding: 40px 12px 12px; font-weight: 800; font-size: .92rem; line-height: 1.3; background: linear-gradient(transparent, rgba(0,0,0,.78)); }
+.short::before { content: "Shorts"; position: absolute; top: 10px; left: 10px; background: var(--yt); color: #fff; font-weight: 800; font-size: .7rem; padding: 3px 8px; border-radius: 6px; z-index: 1; }
+@media (max-width: 760px) { .shorts { grid-template-columns: 1fr 1fr; gap: 12px; } }
+
+/* follow cards */
+.follow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.fl { background: var(--page); border-radius: var(--r); padding: 20px; display: grid; gap: 4px; text-decoration: none; color: var(--ink); border-top: 5px solid var(--ink); transition: transform .15s ease; min-width: 0; }
+a.fl:hover { transform: translateY(-2px); }
+.fl b { font-family: var(--f-display); font-size: 1.3rem; font-weight: 600; }
+.fl span { color: var(--ink-soft); font-weight: 700; font-size: .92rem; overflow-wrap: anywhere; }
+.fl em { font-style: normal; font-weight: 800; color: var(--coral-dark); margin-top: 6px; }
+.fl-yt { border-top-color: var(--yt); }
+.fl-yt em { color: var(--yt-dark); }
+.fl-ig { border-top-color: #d62e7c; }
+.fl-tt { border-top-color: #9a9db3; opacity: .75; }
+.fl-mail { border-top-color: var(--sky-deep); }
+@media (max-width: 860px) { .follow { grid-template-columns: 1fr 1fr; } }
+
+/* the nonprofit pitch moves down, keeps its look */
+.work { border-top: 1px solid var(--line); }
+.h1-size { font-size: clamp(2.2rem, 4.6vw, 3.4rem); }
+@media (prefers-reduced-motion: reduce) { .yt-play::before, .short, .fl { transition: none; } }
+
+/* old films sit right under the top; YouTube + Instagram link cards side by side */
+#films { border-top: 1px solid var(--line); }
+.more-links { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 1060px; }
+.more-links .insta { margin-top: 0; max-width: none; }
+@media (max-width: 760px) { .more-links { grid-template-columns: 1fr; } }
