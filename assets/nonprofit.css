@@ -1,0 +1,32 @@
+/* Nonprofit page (19 Nov 2026): the page talks to nonprofits only. One message, one way through it. Uses the tokens from style.css. */
+
+/* top of the page: the offer */
+.np-hero h1 { font-size: clamp(2.2rem, 4.8vw, 3.5rem); }
+.np-hero .hand { font-size: 1.7rem; }
+
+/* films: one wide film, then the Story Library row, then two more */
+#films { border-top: 1px solid var(--line); }
+#films .yt-grid { margin-top: 40px; }
+#films .yt-card figcaption p { color: var(--ink-soft); font-size: .95rem; }
+
+/* one line on why animation */
+.why-line { padding-block: 64px; }
+.why-line .wrap { display: grid; gap: 14px; justify-items: start; }
+.why-line h2 { max-width: 20em; }
+.why-line .lead { max-width: 38em; }
+
+/* the honest note sits under the steps */
+.steps + .made-note { margin: 36px 0 0; }
+
+/* about: two facts */
+.facts { margin-top: 4px; }
+
+/* the one ask: the sample on the left, the form on the right */
+.ask { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
+.ask .free-card { align-content: center; }
+.ask .free-card a { color: #fff; }
+@media (max-width: 860px) { .ask { grid-template-columns: 1fr; } }
+
+footer .wrap a + a { margin-left: 0; }
+
+a.yt-lite { display: block; }
