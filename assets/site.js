@@ -72,6 +72,7 @@
 (function () {
   // Click-to-play YouTube: show the thumbnail first, load the player only after a tap.
   document.querySelectorAll('.yt-lite').forEach(function (box) {
+    if (!box.dataset.id) return; // plain links to YouTube, nothing to embed
     var img = box.querySelector('img');
     if (img && /maxresdefault/.test(img.src)) img.onerror = function () { img.onerror = null; img.src = img.src.replace('maxresdefault', 'hqdefault'); };
     box.querySelector('.yt-play').addEventListener('click', function () {
